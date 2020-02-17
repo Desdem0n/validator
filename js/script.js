@@ -34,16 +34,24 @@ let newsfeed = [
     }
 ];
 
-let userNamePrompt = prompt("What's your username?");
-let passwordPrompt = prompt("What's your password?");
-
-function signIn(user, password) {
+function isUserValid(username, password) {
     for (let i=0; i < database.length; i++) {
         if (database[i].username === username && database[i].password) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function signIn(username, password) {
+        if (isUserValid(username, password)) {
             console.log(newsfeed);
             
         } else {
             alert("Sorry, wrong username and password!");
         }
     }
-}
+    let userNamePrompt = prompt("What's your username?");
+    let passwordPrompt = prompt("What's your password?");
+
+    signIn(userNamePrompt, passwordPrompt);
